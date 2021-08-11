@@ -2,7 +2,7 @@
     <div class="page">
         <h1>Who is this Pokemon?</h1>
         <PokemonPicture :pokemonId='1' :showPokemon=true />
-        <PokemonOptions />
+        <PokemonOptions :pokemons="pokemonArr" />
     </div>
 </template>
 
@@ -20,6 +20,20 @@ export default {
     PokemonOptions,
     PokemonPicture,
   },
+  data() {
+    return {
+      pokemonArr: [],
+    };
+  },
+  methods: {
+    async mixPokemonArr() {
+      this.pokemonArr = await getPokemonsOptions();
+    },
+  },
+  mounted() {
+    this.mixPokemonArr();
+  },
+
 };
 </script>
 
